@@ -1,0 +1,91 @@
+.relief-map {
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.emergency-alert {
+    border-left: 4px solid #dc3545;
+}
+
+.relief-updates {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.update-item {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.update-item:last-child {
+    border-bottom: none;
+}
+
+.update-meta {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.requirement-tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    margin: 0.25rem;
+}
+
+.requirement-tag.food {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+.requirement-tag.water {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+.requirement-tag.medical {
+    background: #ffebee;
+    color: #b71c1c;
+}
+
+.requirement-tag.urgent {
+    border: 1px solid #dc3545;
+    color: #dc3545;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.status-active {
+    background: #28a745;
+}
+
+.status-urgent {
+    background: #dc3545;
+}
+
+.status-resolved {
+    background: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .relief-map {
+        height: 300px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+} 

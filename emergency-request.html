@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Request - ShareMeal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+</head>
+<body>
+    <!-- Include your navbar here -->
+
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card emergency-card">
+                    <div class="card-header bg-danger text-white">
+                        <h3 class="mb-0">Emergency Food Request</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="emergencyRequestForm">
+                            <div class="mb-3">
+                                <label class="form-label">Request Type</label>
+                                <select class="form-select" name="type" required>
+                                    <option value="food">Food</option>
+                                    <option value="supplies">Supplies</option>
+                                    <option value="medical">Medical</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Urgency Level</label>
+                                <select class="form-select" name="urgencyLevel" required>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="critical">Critical</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Number of Beneficiaries</label>
+                                <input type="number" class="form-control" name="beneficiaries" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description of Emergency</label>
+                                <textarea class="form-control" name="description" rows="3" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Requirements</label>
+                                <textarea class="form-control" name="requirements" rows="2"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Location</label>
+                                <input type="text" id="locationInput" class="form-control" required>
+                                <div id="map" class="mt-2" style="height: 200px;"></div>
+                                <input type="hidden" name="latitude">
+                                <input type="hidden" name="longitude">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Contact Name</label>
+                                    <input type="text" class="form-control" name="contactName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Contact Phone</label>
+                                    <input type="tel" class="form-control" name="contactPhone" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" name="contactEmail" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-danger w-100" id="submitButton">
+                                <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                Submit Emergency Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="emergency.js" type="module"></script>
+</body>
+</html> 

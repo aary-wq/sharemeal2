@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Donation - ShareMeal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="tracking.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+</head>
+<body>
+    <!-- Include your navbar here -->
+
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Donation Status</h4>
+                        <span class="badge bg-primary" id="statusBadge">Pending</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="tracking-progress mb-4">
+                            <div class="progress-step" data-status="pending">
+                                <div class="step-icon">
+                                    <i class="bi bi-clock"></i>
+                                </div>
+                                <div class="step-label">Pending</div>
+                                <div class="step-time"></div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" data-status="confirmed">
+                                <div class="step-icon">
+                                    <i class="bi bi-check-circle"></i>
+                                </div>
+                                <div class="step-label">Confirmed</div>
+                                <div class="step-time"></div>
+                            </div>
+                            <!-- Add more steps -->
+                        </div>
+
+                        <div id="map" class="tracking-map mb-4"></div>
+
+                        <div class="donation-details">
+                            <h5>Donation Details</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Donation ID:</strong> <span id="donationId"></span></p>
+                                    <p><strong>Type:</strong> <span id="donationType"></span></p>
+                                    <p><strong>Created:</strong> <span id="createdAt"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>NGO:</strong> <span id="ngoName"></span></p>
+                                    <p><strong>Status:</strong> <span id="currentStatus"></span></p>
+                                    <p><strong>Expected Delivery:</strong> <span id="expectedDelivery"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Status Updates</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="status-timeline" id="statusUpdates">
+                            <!-- Status updates will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="tracking.js" type="module"></script>
+</body>
+</html> 

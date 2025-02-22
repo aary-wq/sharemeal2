@@ -1,0 +1,78 @@
+<div class="chat-widget">
+    <button id="chatToggle" class="chat-toggle">
+        <i class="bi bi-chat-dots"></i>
+    </button>
+
+    <div id="chatWindow" class="chat-window" style="display: none;">
+        <div class="chat-header">
+            <div class="d-flex align-items-center">
+                <div class="chat-avatar">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <div class="ms-2">
+                    <h6 class="mb-0">ShareMeal Assistant</h6>
+                    <small class="text-muted">AI-powered support</small>
+                </div>
+            </div>
+            <button id="chatClose" class="btn-close"></button>
+        </div>
+
+        <div id="chatMessages" class="chat-messages">
+            <!-- Messages will be added here -->
+        </div>
+
+        <div class="chat-input">
+            <form id="chatForm">
+                <div class="input-group">
+                    <input type="text" 
+                           id="messageInput" 
+                           class="form-control" 
+                           placeholder="Type your message..."
+                           autocomplete="off">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-send"></i>
+                    </button>
+                </div>
+            </form>
+            <div class="quick-replies mt-2">
+                <button class="quick-reply" data-message="Current disaster relief efforts">
+                    <i class="bi bi-exclamation-triangle"></i> Relief Efforts
+                </button>
+                <button class="quick-reply" data-message="Food donation guidelines">
+                    <i class="bi bi-info-circle"></i> Donation Guide
+                </button>
+                <button class="quick-reply" data-message="Volunteer opportunities">
+                    <i class="bi bi-people"></i> Volunteer
+                </button>
+                <button class="quick-reply" data-message="Emergency food relief">
+                    <i class="bi bi-heart"></i> Emergency Help
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add this modal for emergency assistance -->
+<div class="modal fade" id="emergencyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Emergency Food Relief</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="emergency-options">
+                    <button class="btn btn-danger btn-lg w-100 mb-3">
+                        <i class="bi bi-telephone"></i> Emergency Helpline
+                    </button>
+                    <button class="btn btn-primary btn-lg w-100 mb-3">
+                        <i class="bi bi-geo"></i> Find Nearest Food Bank
+                    </button>
+                    <button class="btn btn-success btn-lg w-100">
+                        <i class="bi bi-chat-dots"></i> Connect with NGO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

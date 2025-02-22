@@ -448,4 +448,16 @@
     .step-card {
         padding: 1.5rem;
     }
+}
+
+.navbar-logo {
+    object-fit: contain;
+    margin-right: 12px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: var(--brand-orange);
 } 

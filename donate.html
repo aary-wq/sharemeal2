@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate - ShareMeal</title>
+    <title>Make a Donation - ShareMeal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <link href="donate.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -47,105 +45,107 @@
         </div>
     </nav>
 
-    <div class="page-header">
-        <div class="container">
-            <h1>Make a Donation</h1>
-            <p class="lead">Your generosity can make a real difference</p>
-        </div>
-    </div>
-
-    <section class="donation-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="donation-form-container">
-                        <form id="donationForm" class="needs-validation" novalidate>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="name" required>
-                                    <div class="invalid-feedback">
-                                        Please enter your name
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" required>
-                                    <div class="invalid-feedback">
-                                        Please enter your phone number
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label">Donation Type</label>
-                                    <div class="donation-type-toggle">
-                                        <input type="radio" class="btn-check" name="donationType" id="foodDonation" value="food" checked>
-                                        <label class="btn btn-outline-primary" for="foodDonation">Food</label>
-
-                                        <input type="radio" class="btn-check" name="donationType" id="moneyDonation" value="money">
-                                        <label class="btn btn-outline-primary" for="moneyDonation">Money</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="ngo" class="form-label">Select NGO</label>
-                                    <select class="form-select" id="ngo" required>
-                                        <option value="">Choose an NGO...</option>
-                                        <!-- NGO options will be populated by JavaScript -->
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Please select an NGO
-                                    </div>
-                                </div>
-
-                                <div class="col-12 food-donation-fields">
-                                    <label for="address" class="form-label">Pickup Address</label>
-                                    <textarea class="form-control" id="address" rows="3" required></textarea>
-                                    <div class="invalid-feedback">
-                                        Please enter the pickup address
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 food-donation-fields">
-                                    <label for="pickupDateTime" class="form-label">Preferred Pickup Date & Time</label>
-                                    <input type="text" class="form-control" id="pickupDateTime" required>
-                                    <div class="invalid-feedback">
-                                        Please select pickup date and time
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 money-donation-fields" style="display: none;">
-                                    <label for="amount" class="form-label">Donation Amount ($)</label>
-                                    <input type="number" class="form-control" id="amount" min="1" step="1">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid amount
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100">
-                                        Submit Donation
-                                    </button>
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">Make a Donation</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="donationForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label">Donation Type</label>
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="type" id="foodDonation" value="food" checked>
+                                    <label class="btn btn-outline-primary" for="foodDonation">Food Donation</label>
+                                    
+                                    <input type="radio" class="btn-check" name="type" id="moneyDonation" value="money">
+                                    <label class="btn btn-outline-primary" for="moneyDonation">Money Donation</label>
                                 </div>
                             </div>
+
+                            <!-- Food Donation Form -->
+                            <div id="foodForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Food Type</label>
+                                    <input type="text" class="form-control" name="foodType" required>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label class="form-label">Quantity</label>
+                                        <input type="number" class="form-control" name="quantity" required>
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-label">Unit</label>
+                                        <select class="form-select" name="unit">
+                                            <option value="kg">Kilograms</option>
+                                            <option value="items">Items</option>
+                                            <option value="meals">Meals</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Expiry Date</label>
+                                    <input type="date" class="form-control" name="expiryDate" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Pickup Location</label>
+                                    <textarea class="form-control" name="address" rows="2" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Preferred Pickup Time</label>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="datetime-local" class="form-control" name="pickupTimeFrom" required>
+                                        </div>
+                                        <div class="col">
+                                            <input type="datetime-local" class="form-control" name="pickupTimeTo" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Images</label>
+                                    <input type="file" class="form-control" name="images" multiple accept="image/*">
+                                </div>
+                            </div>
+
+                            <!-- Money Donation Form -->
+                            <div id="moneyForm" style="display: none;">
+                                <div class="mb-3">
+                                    <label class="form-label">Amount (INR)</label>
+                                    <input type="number" class="form-control" name="amount" min="1">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Payment Method</label>
+                                    <select class="form-select" name="paymentMethod">
+                                        <option value="upi">UPI</option>
+                                        <option value="paypal">PayPal</option>
+                                        <option value="stripe">Card Payment</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Additional Notes</label>
+                                <textarea class="form-control" name="description" rows="3"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Submit Donation</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="donate.js"></script>
+    <script src="donate.js" type="module"></script>
 </body>
 </html> 

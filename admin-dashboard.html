@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareMeal Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="logo.png" alt="ShareMeal" height="40">
+                <h5>Admin Dashboard</h5>
+            </div>
+            
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#overview" data-section="overview">
+                        <i class="bi bi-grid"></i> Overview
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#donations" data-section="donations">
+                        <i class="bi bi-box"></i> Donations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#disaster-relief" data-section="disaster-relief">
+                        <i class="bi bi-exclamation-triangle"></i> Disaster Relief
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#volunteers" data-section="volunteers">
+                        <i class="bi bi-people"></i> Volunteers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#announcements" data-section="announcements">
+                        <i class="bi bi-megaphone"></i> Announcements
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#settings" data-section="settings">
+                        <i class="bi bi-gear"></i> Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-link sidebar-toggle">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="header-search">
+                        <input type="search" class="form-control" placeholder="Search...">
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="dropdown">
+                        <button class="btn btn-link position-relative" data-bs-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3
+                            </span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <h6 class="dropdown-header">Notifications</h6>
+                            <a class="dropdown-item" href="#">New donation request</a>
+                            <a class="dropdown-item" href="#">Emergency relief needed</a>
+                            <a class="dropdown-item" href="#">New volunteer application</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-link" data-bs-toggle="dropdown">
+                            <img src="admin-avatar.jpg" alt="Admin" class="avatar">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <h6 class="dropdown-header">Admin Name</h6>
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Sections -->
+            <div class="admin-content">
+                <!-- Overview Section -->
+                <section id="overview" class="dashboard-section active">
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-icon bg-primary">
+                                    <i class="bi bi-box"></i>
+                                </div>
+                                <div class="stats-info">
+                                    <h3>2,547</h3>
+                                    <p>Total Donations</p>
+                                </div>
+                                <div class="stats-trend up">
+                                    <i class="bi bi-arrow-up"></i> 12.5%
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more stats cards -->
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Donation Trends</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="donationChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Recent Activity</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="activity-feed">
+                                        <!-- Activity items will be added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Donations Section -->
+                <section id="donations" class="dashboard-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Manage Donations</h2>
+                        <div class="actions">
+                            <button class="btn btn-primary">
+                                <i class="bi bi-plus"></i> New Donation
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Donor</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="donationsTable">
+                                        <!-- Donation rows will be added here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add other sections -->
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js" type="module"></script>
+</body>
+</html> 
