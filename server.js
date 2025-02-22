@@ -1,17 +1,65 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
-const connectDB = require('./db');
+const connectDB = require('./config/db');
 const cors = require('cors');
-require('dotenv').config();
+const chatbotRoutes = require('./routes/chatbot');
+const notifications = require('./utils/notifications');
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
-const PORT = process.env.PORT || 5000;
 
-// Connect to MongoDB
-connectDB();
+// Try different ports if default is in use
+const findAvailablePort = async (startPort) => {
+    const net = require('net');
+    
+    return new Promise((resolve, reject) => {
+        const server = net.createServer();
+        server.unref();
+        
+        server.on('error', (err) => {
+            if (err.code === 'EADDRINUSE') {
+                resolve(findAvailablePort(startPort + 1));
+            } else {
+                reject(err);
+            }
+        });
+        
+        server.listen(startPort, () => {
+            server.close(() => {
+                resolve(startPort);
+            });
+        });
+    });
+};
+
+// Connect to MongoDB and start server
+const startServer = async () => {
+    try {
+        // First, connect to MongoDB
+        await connectDB();
+        
+        // Find available port
+        const PORT = await findAvailablePort(process.env.PORT || 5000);
+        
+        // Start server
+        server.listen(PORT, () => {
+            console.log(`🚀 Server running on port ${PORT}`);
+        });
+        
+        // Handle server errors
+        server.on('error', (error) => {
+            console.error('Server error:', error);
+            process.exit(1);
+        });
+        
+    } catch (error) {
+        console.error('Failed to start server:', error);
+        process.exit(1);
+    }
+};
 
 // Middleware
 app.use(cors());
@@ -26,7 +74,7 @@ app.use('/views', express.static('views'));
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
-app.use('/api/chatbot', require('./routes/chatbot'));
+app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/payment', require('./routes/payment'));
 
 // WebSocket connection handling
@@ -54,8 +102,10 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: 'Something went wrong!' });
 });
 
-server.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+// Start the server
+startServer().catch(error => {
+    console.error('Failed to start application:', error);
+    process.exit(1);
 });
 
 const jwt = require('jsonwebtoken');

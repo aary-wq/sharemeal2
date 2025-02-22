@@ -1,13 +1,13 @@
-const router = require('express').Router');
+const router = require('express').Router();
 const { OpenAI } = require('openai');
 const rateLimit = require('express-rate-limit');
 
-// Initialize OpenAI
+// Initialize OpenAI with your API key
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: process.env.OPENAI_API_KEY // Make sure this is in your .env file
 });
 
-// Rate limiting
+// Rate limiting middleware
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 50 // limit each IP to 50 requests per windowMs
@@ -71,6 +71,7 @@ const quickResponses = {
     }
 };
 
+// Chat endpoint
 router.post('/message', limiter, async (req, res) => {
     try {
         const { message, language = 'en' } = req.body;
@@ -115,11 +116,8 @@ router.post('/message', limiter, async (req, res) => {
             context: reliefInfo ? { reliefInfo } : null
         });
     } catch (error) {
-        console.error('Chatbot API Error:', error);
-        res.status(500).json({ 
-            error: 'Failed to get response from AI',
-            type: 'error'
-        });
+        console.error('ChatGPT API Error:', error);
+        res.status(500).json({ error: 'Error processing your request' });
     }
 });
 

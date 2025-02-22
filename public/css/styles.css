@@ -1,1 +1,278 @@
- 
+/* About Page Styles */
+.about-hero {
+    padding: 160px 0 80px;
+    background-color: var(--light-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.about-hero h1 {
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-hero .lead {
+    color: var(--secondary-color);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-hero img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.our-story {
+    padding: 80px 0;
+    background-color: var(--white);
+    position: relative;
+    z-index: 1;
+}
+
+.our-story h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.milestone-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 1rem 0;
+    height: 100%;
+}
+
+.milestone-card:hover {
+    transform: translateY(-5px);
+}
+
+.milestone-card i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.milestone-card h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.team {
+    padding: 80px 0;
+    background-color: var(--light-color);
+    position: relative;
+    z-index: 1;
+}
+
+.team-member {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 5px solid var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    color: var(--secondary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* Footer adjustments */
+.footer {
+    position: relative;
+    z-index: 1;
+    padding: 40px 0;
+    margin-top: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 120px 0 60px;
+        text-align: center;
+        min-height: auto;
+    }
+
+    .about-hero img {
+        margin-top: 2rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .our-story h2 {
+        font-size: 2rem;
+    }
+
+    .milestone-card {
+        margin-bottom: 2rem;
+        height: auto;
+    }
+
+    .team-member img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Fix for navbar */
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
+}
+
+/* Tracking Styles */
+.tracking-section {
+    padding: 120px 0 60px;
+    background-color: var(--light-color);
+    min-height: 100vh;
+}
+
+.tracking-form {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tracking-timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 30px;
+}
+
+.timeline-badge {
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.timeline-content {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content h5 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.timeline-content small {
+    color: var(--secondary-color);
+}
+
+.timeline-content .location {
+    margin-top: 10px;
+    color: var(--primary-color);
+}
+
+.donation-details {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .tracking-section {
+        padding: 100px 15px 40px;
+    }
+    
+    .timeline-item {
+        padding-left: 40px;
+    }
+    
+    .timeline-badge {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Modal fixes to work with navbar */
+.modal {
+    z-index: 10000;
+}
+
+.modal-backdrop {
+    z-index: 9990;
+}
+
+/* Ensure all content is below navbar */
+main, 
+section, 
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Login/Signup form fixes */
+.auth-form {
+    margin-top: 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-container {
+    padding-top: 80px;
+    min-height: 100vh;
+    background-color: var(--light-color);
+} 
