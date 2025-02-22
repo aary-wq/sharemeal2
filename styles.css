@@ -19,7 +19,8 @@
 
 .navbar-brand {
     color: var(--primary-color);
-    font-weight: 600;
+    height: 5rem;
+    width: 20rem;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
@@ -27,7 +28,9 @@
 }
 
 .navbar-brand img {
+    width: 43%;
     transition: all 0.3s ease;
+    
 }
 
 .navbar.scrolled .navbar-brand img {
@@ -460,4 +463,111 @@
     align-items: center;
     font-weight: 600;
     color: var(--brand-orange);
+}
+
+/* Payment form styles */
+.StripeElement {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.StripeElement--focus {
+    border-color: #4299e1;
+    box-shadow: 0 0 0 1px #4299e1;
+}
+
+.StripeElement--invalid {
+    border-color: #f56565;
+}
+
+.payment-success {
+    text-align: center;
+    padding: 2rem;
+}
+
+.payment-success i {
+    font-size: 3rem;
+    color: #48bb78;
+    margin-bottom: 1rem;
+}
+
+/* Payment history styles */
+.payment-history-card {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 10px;
+}
+
+.payment-history-card .card-header {
+    background-color: transparent;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 1.5rem;
+}
+
+.payment-history-card .table th {
+    border-top: none;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.payment-history-card .table td {
+    vertical-align: middle;
+}
+
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Analytics styles */
+.analytics-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-card .card-body {
+    padding: 1.5rem;
+}
+
+.analytics-card h2 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.trend {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.trend.up {
+    color: #48bb78;
+}
+
+.trend.down {
+    color: #f56565;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+}
+
+.impact-badge {
+    background: #ebf8ff;
+    color: #2b6cb0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
 } 

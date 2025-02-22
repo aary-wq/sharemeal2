@@ -17,10 +17,17 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from public directory
+app.use(express.static('public'));
+
+// Serve HTML files from views directory
+app.use('/views', express.static('views'));
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/chatbot', require('./routes/chatbot'));
+app.use('/api/payment', require('./routes/payment'));
 
 // WebSocket connection handling
 wss.on('connection', (ws) => {

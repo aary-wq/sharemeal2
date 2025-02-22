@@ -41,6 +41,15 @@ class DonationTracker {
             const donation = await TrackingService.getDonationDetails(this.donationId);
             this.updateUI(donation);
             this.updateMap(donation);
+            
+            // Show receipt download if available
+            if (donation.payment && donation.payment.receipt) {
+                const receiptContainer = document.getElementById('receiptContainer');
+                const downloadButton = document.getElementById('downloadReceipt');
+                
+                receiptContainer.style.display = 'block';
+                downloadButton.href = `/api/payment/receipt/${donation.payment._id}`;
+            }
         } catch (error) {
             console.error('Error initializing tracking:', error);
             alert('Failed to load donation details');

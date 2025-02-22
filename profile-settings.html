@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - ShareMeal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Settings Navigation -->
+                <div class="card">
+                    <div class="list-group list-group-flush">
+                        <a href="#profile" class="list-group-item list-group-item-action active" data-bs-toggle="tab">
+                            <i class="bi bi-person me-2"></i>Profile
+                        </a>
+                        <a href="#notifications" class="list-group-item list-group-item-action" data-bs-toggle="tab">
+                            <i class="bi bi-bell me-2"></i>Notifications
+                        </a>
+                        <a href="#privacy" class="list-group-item list-group-item-action" data-bs-toggle="tab">
+                            <i class="bi bi-shield-lock me-2"></i>Privacy
+                        </a>
+                        <a href="#security" class="list-group-item list-group-item-action" data-bs-toggle="tab">
+                            <i class="bi bi-shield me-2"></i>Security
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <!-- Profile Section -->
+                    <div class="tab-pane fade show active" id="profile">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Profile Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="profileForm">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <div class="text-center">
+                                                <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Profile Picture" id="profilePicture">
+                                                <div>
+                                                    <label class="btn btn-outline-primary btn-sm">
+                                                        Change Photo
+                                                        <input type="file" hidden accept="image/*" id="profilePictureInput">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <label class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" id="fullName">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="email" readonly>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Phone</label>
+                                                <input type="tel" class="form-control" id="phone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Section -->
+                    <div class="tab-pane fade" id="notifications">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Notification Preferences</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="notificationForm">
+                                    <div class="mb-4">
+                                        <h6>Email Notifications</h6>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="emailDonations">
+                                            <label class="form-check-label">Donation Updates</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="emailNews">
+                                            <label class="form-check-label">Newsletter</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <h6>Push Notifications</h6>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="pushDonations">
+                                            <label class="form-check-label">Donation Updates</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="pushEmergency">
+                                            <label class="form-check-label">Emergency Requests</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <h6>SMS Notifications</h6>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="smsUpdates">
+                                            <label class="form-check-label">Important Updates</label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Save Preferences</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Section -->
+                    <div class="tab-pane fade" id="privacy">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Privacy Settings</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="privacyForm">
+                                    <div class="mb-4">
+                                        <h6>Profile Visibility</h6>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="showProfile">
+                                            <label class="form-check-label">Show my profile to other users</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="showDonations">
+                                            <label class="form-check-label">Show my donations</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <h6>Data Usage</h6>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="dataAnalytics">
+                                            <label class="form-check-label">Allow data for analytics</label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Update Privacy</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="tab-pane fade" id="security">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Security Settings</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="securityForm">
+                                    <div class="mb-4">
+                                        <h6>Change Password</h6>
+                                        <div class="mb-3">
+                                            <label class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" id="currentPassword">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Confirm New Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <h6>Two-Factor Authentication</h6>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="enable2FA">
+                                            <label class="form-check-label">Enable 2FA</label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Update Security</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/pages/profile-settings.js" type="module"></script>
+</body>
+</html> 
