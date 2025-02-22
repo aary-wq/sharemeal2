@@ -1,7 +1,320 @@
-  <head>
-     <link href="/css/chat.css" rel="stylesheet">
-  </head>
-  <body>
-      ...
-     <script src="/js/components/chat-widget.js" type="module"></script>
-  </body> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareMeal Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #27ae60;
+            --accent-color: #3498db;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header h5 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .chat-header .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-header button {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 5px;
+            transition: opacity 0.2s;
+        }
+
+        .chat-header button:hover {
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--light-gray);
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            clear: both;
+        }
+
+        .message-content {
+            padding: 10px 15px;
+            border-radius: 15px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            float: right;
+        }
+
+        .user-message .message-content {
+            background: var(--primary-color);
+            color: var(--white);
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            float: left;
+        }
+
+        .bot-message .message-content {
+            background: var(--white);
+            color: var(--dark-gray);
+            border-bottom-left-radius: 5px;
+            box-shadow: var(--shadow);
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .chat-input {
+            padding: 15px;
+            background: var(--white);
+            border-top: 1px solid #eee;
+        }
+
+        .input-group {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: var(--shadow);
+        }
+
+        .chat-input input {
+            border: none;
+            outline: none;
+            padding: 10px 15px;
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .chat-input button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .chat-input button:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+            background: var(--white);
+            border-radius: 15px;
+            width: fit-content;
+            margin-bottom: 15px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: typing 1s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Scrollbar styling */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .chat-widget {
+                width: 100%;
+                height: 100%;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-widget">
+        <div class="chat-header">
+            <h5><i class="bi bi-chat-dots"></i> ShareMeal Assistant</h5>
+            <div class="controls">
+                <button id="minimizeChat"><i class="bi bi-dash-lg"></i></button>
+                <button id="closeChat"><i class="bi bi-x-lg"></i></button>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be added here dynamically -->
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hello! How can I help you today?
+                    <span class="message-time">10:00 AM</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <div class="input-group">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendMessage">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendMessage');
+            const minimizeButton = document.getElementById('minimizeChat');
+            const closeButton = document.getElementById('closeChat');
+            const chatWidget = document.querySelector('.chat-widget');
+
+            // Send message function
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addMessage(message, 'user');
+                    messageInput.value = '';
+                    
+                    // Show typing indicator
+                    showTypingIndicator();
+
+                    // Simulate bot response after 1 second
+                    setTimeout(() => {
+                        removeTypingIndicator();
+                        addMessage('Thank you for your message. I\'ll help you with that.', 'bot');
+                    }, 1000);
+                }
+            }
+
+            // Add message to chat
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                
+                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                messageDiv.innerHTML = `
+                    <div class="message-content">
+                        ${text}
+                        <span class="message-time">${time}</span>
+                    </div>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Remove typing indicator
+            function removeTypingIndicator() {
+                const typingIndicator = document.querySelector('.typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            // Event listeners
+            sendButton.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            minimizeButton.addEventListener('click', () => {
+                chatWidget.style.height = '60px';
+                chatWidget.style.overflow = 'hidden';
+            });
+
+            closeButton.addEventListener('click', () => {
+                chatWidget.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html> 
